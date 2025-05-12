@@ -58,10 +58,10 @@ if __name__ == "__main__":
                     raise ValueError(f"有非整數項目「{item}」")
             data = [int(item) for item in str_items]
 
-        order_input = input("請選擇排序方式：a表示升序，或d表示降序：\n").strip().upper()
-        if order_input == "d":
+        order_input = input("請選擇排序方式(a表示升序，或d表示降序)：").strip().upper()
+        if order_input == "D":
             ascending = False
-        elif order_input == "a" or order_input == "":
+        elif order_input == "A":
             ascending = True
         else:
             raise ValueError("只能輸入a(升序)或d(降序)")
