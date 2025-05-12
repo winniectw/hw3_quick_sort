@@ -53,20 +53,23 @@ if __name__ == "__main__":
             str_items = [item.strip() for item in user_input.split(',')]
             if "" in str_items:
                 raise ValueError("有空白值或重複逗號")
+            for item in str_items:
+                if not item.lstrip("-").isdigit():
+                    raise ValueError(f"有非整數項目「{item}」")
             data = [int(item) for item in str_items]
 
-        order_input = input("請選擇排序方式：輸入A表示升序，輸入D表示降序：\n").strip().upper()
-        if order_input == "D":
+        order_input = input("請選擇排序方式：a表示升序，或d表示降序：\n").strip().upper()
+        if order_input == "d":
             ascending = False
-        elif order_input == "A" or order_input == "":
+        elif order_input == "a" or order_input == "":
             ascending = True
         else:
-            raise ValueError("只能輸入A(升序)或D(降序)")
+            raise ValueError("只能輸入a(升序)或d(降序)")
 
         print(f"原始陣列：{data}\n")
         quick_sort(data, 0, len(data) - 1)
         print(f"排序後陣列：{data}")
         print(f"總交換次數：{swap_count}\n")
 
-    except ValueError:
-        print(f"輸入錯誤：{ValueError}")
+    except ValueError as VE:
+        print(f"輸入錯誤：{VE}")
